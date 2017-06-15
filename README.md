@@ -2,83 +2,31 @@ HypArt
 ======
 
 
-This had to be written in English, because PyCharm does not like German.
-Sorry for that.
+Re-Implementation of the original HypArt.de using Python/Flask.
 
-## Before you begin
 
-## Fork this project
-Please fork this project into your private area git(lab|hub) and invite the instructor to
-your new forked python exercise project.
+### 'Version-ing'
+This app was written using Python 2.7.
 
-### Setting up your python environment
-You only have to do this once on your system. This is about installing
-python3 AND virtualenvwrapper. This is the preferred setup. You want this.
+### Modules and setting up your database
+Here are some prerequisites if you actually decide to run/modify the app on your machine:
 
-1. Have Python3.x (at least 3.5) ready. Best to be installed from
-with homebrew or macports. Reach out for help if need it.
-2. Install virtualenvwrapper via `pip3 install virtualenvwrapper`.
-3. Export the path to your python3 binary by adding `export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3` to your `.profile` or `.bashrc`.
-4. Don't forget to add `source /usr/local/bin/virtualenvwrapper.sh`
-or `source /opt/local/bin/virtualenvwrapper.sh` to your `.profile` or `.bashrc`. **AFTER** the export statement from step 3. (The path depends on your choice to use homebrew or macports)  Again: Ask for help if needed.
+1. Get Python (obviously), using Homebrew or something else (just my personal preference).
+`brew install python` - disclaimer: the command `python` will point to your Python 2.x installation,
+while `python3` points to the Python 3.x installation. 
+2. Get the Python framework 'Flask' - `pip install flask`.
+3. Get 'WTForms' - `pip install wtforms`.
+4. (technically, the following steps are optional) Get an SQL module; to get compatibility outta the box, use `pymysql` - it's what I used and you won't need to modify the code if you just use it as well.
+5. Clone my database structure using the `hypart.sql` file which can be found in the main directory of this repo.
+6. Configure your server to run at port `8889` - usually this should be default, but.. you know..
 
-### Creating a virtualenv (venv) for this exercise.
-We are ready to go. Great. The last thing before starting coding is to create
-a virtual environment for our exercise. What's that ?
-It is a fresh sandbox in which you can install additional python software. If
-you are no longer in need of that sandbox, you just throw it away. If you had
-a bad dog in your sandbox: trash it and start anew.
+## How to launch this rocket
+So, you're down to get this app started? 
+Go ahead and `cd` into the `hypart/document_root` directory and cast a simple `python app.py` to your bash.
+Done. The app is running locally on your machine.
 
-On your console enter this: `mkvirtualenv hypart`
+To view the site, go to `localhost:5000/main`, `localhost:5000/main.sh` or `localhost:5000` - you'll get redirected,
+but the actual landing page is at `/main` by default. If you didn't change anything and got a `root` database user, you should be good.
 
-You will have some output like this.
-```bash
-$ mkvirtualenv hypart
-Using base prefix ... bla bla bla... output output...
-...
-more lines with output.
-...
-(hypart) $
-```
-The new virtualenv is created and already activated. You can tell that by seeing the
-name of your virtualenv in front of your $ prompt.
+Oh, the debugger should be active, so if anything goes wrong you get the detailed error page to see what went wrong.
 
-To enter your virtualenv the next time you will have to activate it. Open a new
-terminal window and enter `lsvirtualenv`. TIP: by pressing the tab key you can
-auto-complete your commands. Less typing.
-
-On my system I have already some virtualenvs. My output shows:
-```
-$ lsvirtualenv
-csimon
-======
-django1.10
-==========
-miwula
-======
-hypart
-=====
-```
-
-To start working in the `hypart` virtualenv enter: `workon hypart` TIP: You can also use the
-tab key for completing the name of your virtualenv. If you have multiple virtualenvs you can
-press TAB twice to see a liste of your venvs to choose from.
-
-```
-$ workon hypart
-(hypart) $
-```
-
-In our new venv we need a testing software for our exercise. Please install pytest with this
-command:
-```
-pip install pytest
-```
-This is the way how new python applications or modules are installed into a venv.
-
-Now we are ready to start the exercise.  Quite some work, but only for the first time setup.
-Promised :-)
-
-## You are up and running. What do do now:
-
-Continue reading with `Aufgabe.txt`.
