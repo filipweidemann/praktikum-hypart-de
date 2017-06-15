@@ -26,7 +26,7 @@ Go ahead and `cd` into the `hypart/document_root` directory and cast a simple `p
 Done. The app is running locally on your machine.
 
 To view the site, go to `localhost:5000/main`, `localhost:5000/main.sh` or `localhost:5000` - you'll get redirected,
-but the actual landing page is at `/main` by default. If you didn't change anything and got a `root` database user, you should be good.
+but the actual landing page is at `/main` by default. If you didn't change anything and got a `root` database user, you should be golden.
 
 Oh, the debugger should be active, so if anything goes wrong you get the detailed error page to see what went wrong.
 
