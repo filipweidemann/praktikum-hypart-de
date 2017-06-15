@@ -1,0 +1,14 @@
+.outer {
+    width: 768px;
+    height: 768px;
+}
+
+.inner {
+    width: 256px;
+    height: 256px;
+    float: left;
+}
+
+body {
+  background-color: black;
+}

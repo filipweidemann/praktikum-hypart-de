@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div><b><h3> Edit map layout for Project #{{PROJECT_NUM}}</h3></b></div>
+</br>
+</br>
+<div>
+<form method="POST" action="{{ url_for('apply_changes_to_map') }}">
+  <label>Select tile (x,y):</label>
+  <select class="form-control" name="tile" required>
+    {% for tile in ids %}
+      <option>{{tile}}</option>
+    {% endfor %}
+  </select>
+</div>
+</br>
+<div>
+  <label>Select desired mode of tile (x,y):</label>
+  <select class="form-control" name="mode" required>
+    <option>x</option>
+    <option>r</option>
+    <option>R</option>
+    <option>0</option>
+  </select>
+</br>
+  <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+</div>
+</div>
+{% endblock %}

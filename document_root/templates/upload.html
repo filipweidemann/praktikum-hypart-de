@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <h3>Upload your picture</h3>
+</br>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <form method="POST" action="" enctype=multipart/form-data>
+    <div class="form-group">
+      {{render_field(form.email, class = "form-control")}}
+      <i style="text-size: 5px; color: red;">*your picture will be placed only if your email matches with the one you rented your tile with*</i>
+    </div>
+    <div>
+      <input type=file name=file>
+      <b><i style="text-size: 5px; color: red;">*.gif, .jpg, .jpeg only!*</i></b></br>
+      <b><i style="text-size: 5px; color: red;">*196x196 only!*</i></b>
+    </div>
+    </br>
+    <p><input type="submit" class="btn btn-primary" value="Submit"></p>
+  </form>
+{% endblock %}

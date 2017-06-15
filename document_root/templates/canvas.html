@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h3>Welcome to canvas #{{PROJECT_NUM}}</h3>
+<div class = "outer">
+  {% for patch, id in img_id_list %}
+      <div class = "inner">
+        {% if patch == 'http://www.hypart.de/HypArt/defpics/rent_tile.gif' %}
+          <a href="/rent/{{id}}">
+            <img src="{{patch}}" alt="Placeholder">
+          </a>
+        {% elif patch == 'http://www.hypart.de/HypArt/defpics/busy_tile.gif' %}
+          <img src="{{patch}}">
+        {% elif patch == 'croppedgif.gif' %}
+          <img src="{{url_for('static', filename = patch )}}">
+        {% else %}
+          <img src="{{url_for('static', filename = patch )}}">
+        {% endif %}
+      </div>
+  {% endfor %}
+  {% for artist in artists %}
+    <a href="/artists/{{artist}}">{{artist}}</a>, 
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+.outer {
+    width: 300px;
+    height: 600px;
+}
+
+.inner {
+    width: 100px;
+    height: 100px;
+    outline: 1px solid;
+    float: left;
+}
+
+body {
+  background-color: black;
+}

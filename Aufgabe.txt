@@ -1,0 +1,129 @@
+Projekt::
+Re-Implementierung www.HypArt.de
+===============================
+
+n@work, Klaus Rosenfeld
+
+
+### Aufgabe (allgemein):
+
+Die Funktionalität einer bestehenden jedoch technisch veralteten Web-Anwendung soll neu 
+implementiert werden. Dabei sollen kleinere Erweiterungen der Funktionalität ebenfalls
+umgesetzt werden. Perspektivisch soll die neue Anwendung auch auf weitere mittel-  
+und langfristige Erweiterungen ausgelegt sein.
+
+
+### Aufgabe (konkret):
+
+Die Website www.hypart.de ist seit 1994 online und gestattet es, verschiedenen Künstlern 
+gemeinsam ein einzelnes Bild zu erschaffen. Zentrale Schnittstelle des Systems ist eine
+Leinwand, die in der Regel aus 3x3 Quadraten besteht. Jedes dieser Felder kann von einem
+Künstler für maximal drei Tage "gemietet" werden. Die bestehende Web-Anwendung ermöglicht
+folgende Funktionen:
+
+1) Darstellung des aktuellen Zustands der Leinwand
+2) Verändern des Zustands der Leinwand nachdem ein einzelnes Feld gemietet wurde
+3) Speichern der persönlichen Daten eines Künstlers nachdem er/sie ein Feld gemietet hat
+4)  Versand einer E-Mail an klaus@work.de nachdem ein Feld gemietet wurde
+
+
+### Weitere Details zu den einzelnen Funktionen:
+
+1) Darstellung des aktuellen Zustands der Leinwand
+
+Der aktuelle Zustand der Leinwand wird in einer Textdatei gespeichert:
+
+DOCUMENT_ROOT/HypArt/project<NN>/picture.map
+
+<NN> = Nummer des Projekts. Bispiel "project49"
+
+Die Datei ist folgendermassen aufgebaut:
+
+xxx
+r0R
+xxx
+
+Jedes Zeichen repräsentiert ein einzelnes Feld innerhalb der Leinwand. Der
+aktuelle Wert stellt den Zustand dar:
+
+x=Bild ist fertig: Das entsprechende Bild muss dargestellt werden
+	Die Bilder liegen im folgenden Verzeichnis:
+	DOCUMENT_ROOT/HypArt/project<NN>/pics/
+	Die Namen der Bild haben dieses Format: <X>_<Y>.gif
+	<X> = Spalte des Bildes, 1= links, 2=mitte, 3=rechts
+	<Y> = Reihe des Bildes, 1= oben, 2=mitte, 3=unten
+	Beispiel: "2_2.gif"
+r=Bild kann gemietet werden: Das Bild "free to rent" muss an dieser Stelle
+	dargestellt werden inkl. Verlinkung auf das "Miet-Forumular":
+	http://www.hypart.de/HypArt/defpics/rent_tile.gif
+R=Bild ist bereits gemeitet und befindet sich in Arbeit: Das Bild "Under
+	construction" muss an dieser Stelle angezeigt werden:
+	http://www.hypart.de/HypArt/defpics/busy_tile.gif
+0=Bild ist deaktiviert: An dieser Stelle muss das schwarze Bild dargestellt werden:
+	http://www.hypart.de/HypArt/defpics/blank_tile.gif
+
+
+2)-4) Ablauf des Prozess beim Mieten eines Bildes
+
+Wird ein "mietbares" Bild angeklickt, erscheint danach ein Formular, welches folgende
+Angaben abfragt:
+
+Name *: 
+E-Mail *: 
+Personal Homepage:
+Message:
+
+* = Pflichtfeld
+
+Sind alle Felder korrekt ausgefüllt, geschieht folgendes:
+
+- In der Datei "picture.map" wird das entsprechende Zeichen von "r" auf "R" geändert.
+- Die Angaben des Künstlers aus dem Formular werden in folgender Datei gespeichert:
+
+  DOCUMENT_ROOT/HypArt/project<NN>/artists/<X>_<Y>.html
+
+  <X> = Spalte des Bildes, 1= links, 2=mitte, 3=rechts
+  <Y> = Reihe des Bildes, 1= oben, 2=mitte, 3=unten
+  Beispiel: "2_2.html"
+
+- Der Inhalt des Formulars wird per E-Mail an die Adresse klaus@work.de verschickt.
+
+
+### Aufgabe & einzusetzenden Bibliotheken
+
+Die oben beschriebenen Funktionen sollen neu implementiert werden werden.
+Die Leinwand soll über die Adresse "/main" aufgerufen werden.
+Layout (HTML) und Logik (Die WebApp) sollen voneinander getrennt sein. Für das
+Layout soll eine Template Sprache (z.B. Jinja2) verwendet werden.
+
+### Erweiterungen:
+(nicht vor den Grundfunktionen umsetzen!)
+
+1)
+Z.Zt. werden nur GIF-Grafiken (Suffix ".gif") vom System erkannt. Hier sollen auch JPEG-
+Dateien (Suffix ".jpg") erkannt und eingebunden werden.
+
+2)
+Das Skript soll auch über die Adresse "/main.sh" aufgerufen werden können ohne
+dass das Skript umbenannt/kopiert werden muss.
+
+3)
+Momentan müssen nach Fertigstellung eines einzelnes Bildes noch folgende
+Schritte manuell durchgeführt werden:
+- übertragen des Bildes per FTP in das "pics"-Verzeichnis
+- Aktualisieren der Datei "picture.map"
+- Aktualisieren der Datei DOCUMENT_ROOT/HypArt/project<NN>/artists/artists.list
+	die eine Liste aller Künstler inkl. Link zu deren Mehr-Info-Seiten (z.B. "2_2.html")
+	enthält.
+Für diese Schritte soll ein Web-Interface erstellt werden, welches den Upload eines
+neuen Bildes gestattet. Nach dem Upload sollen die nächsten beiden Schritte automatisch
+erfolgen. Die Web-Schnittstelle soll weiterhin gestatten den Status der einzelnen Felder 
+innerhalb der Leinwand "manuell" beeinflussen zu können.
+
+
+
+
+
+
+
+

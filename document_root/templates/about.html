@@ -1,0 +1,7 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <h3>Artists</h3>
+  {% for artist in artistList %}
+    <b><div><a href="artists/{{artist}}">{{artist}}</a></div></b>
+  {% endfor %}
+{% endblock %}

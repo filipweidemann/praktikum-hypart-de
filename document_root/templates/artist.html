@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div><b> Contributor Profile </b></div>
+<div> Name: {{artist}} </div>
+<div> Email: {{email}} </div>
+<div> Homepage:
+  {% if homepage == "" %}
+    -
+  {% endif %}
+  {{homepage}} </div>
+</br>
+<div> The artist said:
+  {% if quote == "" %}
+  -
+  {% endif %}
+  </br> {{quote}} </div>
+{% endblock %}
